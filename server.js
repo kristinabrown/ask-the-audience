@@ -33,7 +33,6 @@ io.on('connection', function (socket){
   
   socket.on('disconnect', function () {
     console.log('A user has disconnected.', io.engine.clientsCount);
-    delete votes[socket.id];
     console.log(votes);
     io.sockets.emit('usersConnection', io.engine.clientsCount); 
     io.sockets.emit('voteCount', countVotes(votes));
