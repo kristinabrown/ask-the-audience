@@ -2,21 +2,50 @@
 <html>
   <head>
     <title>Ask the Audience</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-  <h1>Poll the Audience</h1>
-  <div id="connection-count"></div>
-  <div id="status-message"></div>
-  
-  <div id="choices">
-    <button>A</button>
-    <button>B</button>
-    <button>C</button>
-    <button>D</button>
+  <h1 class="center main-header">Cast Your Vote!</h1>
+  <div class="row">
+    <div class="col s4 offset-s8">
+      <div id="status-message"></div>
+    </div>
   </div>
-  <div id="current-tally"></div>
+  <div class="row">
+    <div class="col s4 offset-s8">
+      <div id="connection-count"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s10 offset-s2">
+      <h2>Question:<h2>
+        <h3>Where should Kenny live?</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s10 offset-s1">
+      <div id="your-vote"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s10 offset-s1">
+      <div id="choices">
+        <button id="B" class="waves-effect waves-light btn">New York</button>
+        <button id="A" class="waves-effect waves-light btn">Denver</button>
+        <button id="C" class="waves-effect waves-light btn">The Moon</button>
+        <button id="D" class="waves-effect waves-light btn">The 4th Dimension</button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s10 offset-s1">
+      <div id="current-tally">
+      </div>
+    </div>
+  </div>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/client.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
   </body>
 </html>

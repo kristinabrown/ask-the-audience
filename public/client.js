@@ -1,5 +1,6 @@
 var socket = io();
 
+
 var connectionCount = document.getElementById('connection-count');
 
 socket.on('usersConnection', function (count) {
@@ -16,12 +17,30 @@ var buttons = document.querySelectorAll('#choices button');
 
 for (var i = 0; i < buttons.length; i++) {
   buttons[i].addEventListener('click', function () {
-    socket.send('voteCast', this.innerText);
+    socket.send('voteCast', this.id);
   });
 }
 
 var voteTally = document.getElementById('current-tally');
 
 socket.on('voteCount', function (votes) {
-  console.log(votes);
+  voteTally.innerText = 'Vote Tally: ' +
+                        ' Denver: ' + votes.A +
+                        '________New York: ' + votes.B +
+                        '________Moon: ' + votes.C +
+                        '________4th Dimension: ' + votes.D 
+});
+
+var yourVote = document.getElementById('your-vote');
+
+socket.on('vote', function (vote) {
+  if(vote == "A"){
+    yourVote.innerText = 'Your vote: Denver (really?)'  
+  } else if(vote == "B"){
+    yourVote.innerText = 'Your vote: New York (are you sure?)'  
+  }else if(vote == "C"){
+    yourVote.innerText = 'Your vote: The Moon!'  
+  }else if(vote == "D"){
+    yourVote.innerText = 'Your vote: 4th Dimension!'  
+  }
 });

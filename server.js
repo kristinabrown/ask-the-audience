@@ -1,6 +1,8 @@
 const http = require('http');
 const express = require('express');
 
+
+
 const app = express();
 
 app.use(express.static('public'));
@@ -26,7 +28,7 @@ var votes = {};
 io.on('connection', function (socket){
   console.log('a user has connected!', io.engine.clientsCount);
   io.sockets.emit('usersConnection', io.engine.clientsCount);
-  
+  io.sockets.emit('voteCount', countVotes(votes));
   socket.emit('statusMessage', 'You have connected.');
   
   socket.on('disconnect', function () {
@@ -34,19 +36,21 @@ io.on('connection', function (socket){
     delete votes[socket.id];
     console.log(votes);
     io.sockets.emit('usersConnection', io.engine.clientsCount); 
-    socket.emit('voteCount', countVotes(votes)); 
+    io.sockets.emit('voteCount', countVotes(votes));
   });
   
   socket.on('message', function (channel, message) {
     if(channel === 'voteCast'){
       votes[socket.id] = message;
       console.log(votes);
-      socket.emit('voteCount', countVotes(votes));
+      io.sockets.emit('voteCount', countVotes(votes));
+      socket.emit('vote', message);
     }
   });
 });
 
 function countVotes(votes) {
+  debugger;
   var voteCount = {
     A: 0,
     B: 0,
