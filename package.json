@@ -1,0 +1,17 @@
+{
+  "name": "ask-the-audience",
+  "version": "1.0.0",
+  "description": "ask the audience websocket app",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "node server.js"
+  },
+  "author": "kb",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.13.3",
+    "lodash": "^3.10.1",
+    "socket.io": "^1.3.6"
+  }
+}
